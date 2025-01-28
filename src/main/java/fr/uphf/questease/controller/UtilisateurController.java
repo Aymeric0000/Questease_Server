@@ -17,14 +17,14 @@ public class UtilisateurController {
     /**
      * Le repositoire d'Utilisateur
      */
-    private final UtilisateurServiceImpl UtilRepository;
+    private final UtilisateurServiceImpl utilRepository;
 
     /**
      * Le constructeur d'UtilisateurController
      * @param utililisateurRepository Le repositoire d'Utilisateur
      */
     public UtilisateurController(UtilisateurServiceImpl utililisateurRepository) {
-        UtilRepository = utililisateurRepository;
+        utilRepository = utililisateurRepository;
     }
     /**
      * Méthode Get pour récupérer un Utilisateur via son nom
@@ -33,27 +33,27 @@ public class UtilisateurController {
     **/
     @GetMapping("/{idUtil}")
     public ResponseEntity<Iterable<Utilisateur>> getUserByName(@PathVariable String nameUtil){
-        return ResponseEntity.ok(UtilRepository.FetchOne(nameUtil));
+        return ResponseEntity.ok(utilRepository.fetchOne(nameUtil));
     }
 
     /**
      * Méthode Post permettant d'ajouter un Utilisateur à la base de donnée
-     * @param Util L'utilisateur à ajouté à la base de donnée
+     * @param idUtil L'utilisateur à ajouté à la base de donnée
     **/
     @PostMapping("/{idUtil}")
-    public void PostUser(@PathVariable Utilisateur Util){
-        UtilRepository.SaveUtilisateur(Util);
+    public void postUser(@PathVariable Utilisateur idUtil){
+        utilRepository.saveUtilisateur(idUtil);
     }
 
     /**
      * Méthode Update permettant de mettre à jour un Utilisateur dans la base de donnée
-     * @param IdUser L'id de L'Utilisateur à mettre à jour
-     * @param Util L'utilisateur qui sera mis à jour
+     * @param idUser L'id de L'Utilisateur à mettre à jour
+     * @param util L'utilisateur qui sera mis à jour
     **/
     @PatchMapping("/{idUtil}")
-    public void UpdateUser(Long IdUser, @PathVariable Utilisateur Util){
-        UtilRepository.DeleteUtilisateur(IdUser);
-        UtilRepository.SaveUtilisateur(Util);
+    public void updateUser(Long idUser, @PathVariable Utilisateur util){
+        utilRepository.deleteUtilisateur(idUser);
+        utilRepository.saveUtilisateur(util);
     }
 
     /**
@@ -61,8 +61,8 @@ public class UtilisateurController {
      * @param idUtil L'id de l'Utilisateur à supprimer de la base de donnée
     **/
     @DeleteMapping("/{idUtil}")
-    public void DeleteUser(@PathVariable Long idUtil){
-        UtilRepository.DeleteUtilisateur(idUtil);
+    public void deleteUser(@PathVariable Long idUtil){
+        utilRepository.deleteUtilisateur(idUtil);
     }
 
     /**
@@ -70,13 +70,13 @@ public class UtilisateurController {
      * @return une list de JoueurTmp
      */
     @GetMapping()
-    public List<Utilisateur> GetAllUserGet(){return UtilRepository.FetchUtilisateurList();}
+    public List<Utilisateur> getAllUserGet(){return utilRepository.fetchUtilisateurList();}
 
     /**
-     * Méthode POST qui renvoie tous les JoueurTmp de la base de données
+     * Méthode POST qui renvoie tous les joueurs de la base de données
      * @return une list de JoueurTmp
      */
     @PostMapping()
-    public List<Utilisateur> GetAllUserPost(){return UtilRepository.FetchUtilisateurList();}
+    public List<Utilisateur> getAllUserPost(){return utilRepository.fetchUtilisateurList();}
 
 }

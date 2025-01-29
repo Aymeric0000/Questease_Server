@@ -32,6 +32,12 @@ public class Utilisateur {
     private int Xp;
 
     /**
+     * La difficulté du jeu choisi par l'utilisateur dans les paramètres
+     */
+    @Column(name = "diff", nullable = false)
+    private int diff;
+
+    /**
      * Lien vers les informations générales de l'utilisateur
      */
     @OneToOne(mappedBy = "utilisateur", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -41,22 +41,23 @@ public class MotPenduController {
 
     /**
      * Méthode Post permettant d'ajouter un mot à la base de donnée
-     * @param M Le mot à ajouter à la base de donnée
+
+     * @param idMotPendu Le mot à ajouter à la base de donnée
      */
     @PostMapping("/{idMotPendu}")
-    public void PostMot(@PathVariable MotPendu M) {
-        repo.saveMotPendu(M);
+    public void postMot(@PathVariable MotPendu idMotPendu) {
+        repo.saveMotPendu(idMotPendu);
     }
 
     /**
      * Méthode Update permettant de mettre à jour un mot dans la base de donnée
      * @param idMotPendu L'id du mot à mettre à jour
-     * @param M Le mot qui sera mis à jour
+     * @param mot Le mot qui sera mis à jour
      */
     @PatchMapping("/{idMotPendu}")
-    public void updateMot(Long idMotPendu, @PathVariable MotPendu M) {
+    public void updateMot(Long idMotPendu, @PathVariable MotPendu mot) {
         repo.deleteMotPendu(idMotPendu);
-        repo.saveMotPendu(M);
+        repo.saveMotPendu(mot);
     }
 
     /**
